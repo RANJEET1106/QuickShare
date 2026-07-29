@@ -1,0 +1,136 @@
+:root {
+  /* HSL Base Colors for easier opacity manipulation */
+  --base-primary: 235, 100%, 67%;
+  /* #635bff approx */
+
+  /* Spacing & Radius */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 30px -5px var(--primary-soft);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-med: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------------- LIGHT (Stripe-Inspired) ---------------- */
+html[data-theme="light"] {
+  --bg: #f2f5f7;
+  /* Very subtle cool gray */
+  --surface: #ffffff;
+  --surface-muted: #f7f9fc;
+  --surface-float: rgba(255, 255, 255, 0.8);
+
+  --text: #3c4257;
+  /* Stripe's slate dark */
+  --text-muted: #697386;
+  --text-faint: #a3acb9;
+
+  --primary: #635bff;
+  --primary-hover: #4b42d9;
+  --primary-soft: rgba(99, 91, 255, 0.1);
+  --primary-contrast: #ffffff;
+
+  --danger: #e22525;
+  --success: #32d67b;
+
+  --border: #e3e8ee;
+  --border-focus: #cdd6e0;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shine: rgba(255, 255, 255, 0.4);
+}
+
+html[data-theme="dark"] {
+  --bg: #191919;
+  --surface: #202020;
+  --surface-muted: #2c2c2c;
+  --surface-float: rgba(32, 32, 32, 0.8);
+
+  --text: #e5e5e5;
+  --text-muted: #a3a3a3;
+  --text-faint: #737373;
+
+  --primary: #7aa7f0;
+  --primary-hover: #4889d4;
+  --primary-soft: rgba(94, 162, 239, 0.15);
+  --primary-contrast: #191919;
+
+  --danger: #ff6b6b;
+  --success: #69db7c;
+
+  --border: #2f2f2f;
+  --border-focus: #454545;
+
+  --glass-bg: rgba(32, 32, 32, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shine: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition-med), color var(--transition-med);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-body {
+  color: var(--text) !important;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+.form-control,
+.form-select {
+  background-color: var(--surface) !important;
+  background-color: var(--surface);
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px var(--primary-soft) !important;
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-faint) !important;
+  opacity: 1;
+}

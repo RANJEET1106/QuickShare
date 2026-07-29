@@ -1,0 +1,20 @@
+spring.application.name=Quick Share
+
+spring.datasource.username=postgresUsername
+spring.datasource.password=postgresPassword
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5432/DBName
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.data.jpa.repositories.bootstrap-mode=default
+spring.jpa.defer-datasource-initialization=true
+server.port=8080
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format-sql=true
+
+google.drive.root.folder.id=drive root folder id
+google.oauth.client-id=oauthClientId.apps.googleusercontent.com
+google.oauth.client-secret=oauthClientSecret
+google.oauth.refresh-token=oauthRefreshToken
+google.oauth.redirect-uri=http://localhost:8080/oauth/callback
+
