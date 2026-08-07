@@ -2,6 +2,7 @@ package com.quickshare.quickshare.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+import com.github.f4b6a3.uuid.UuidCreator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,7 +51,7 @@ public class Item {
 
     @PrePersist
     void onCreate() {
-        this.id = UUID.randomUUID();
+        this.id = UuidCreator.getTimeOrderedEpoch();
         this.createdAt = LocalDateTime.now();
     }
 }

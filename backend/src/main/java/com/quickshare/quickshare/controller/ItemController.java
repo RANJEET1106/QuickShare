@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.UUID;
 
 import org.apache.http.HttpStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +27,7 @@ import com.quickshare.quickshare.repository.ItemRepository;
 import com.quickshare.quickshare.repository.SystemStatusRepository;
 import com.quickshare.quickshare.service.DriveService;
 import com.quickshare.quickshare.service.DtoService;
+import com.quickshare.quickshare.service.ItemService;
 
 @RestController
 // @CrossOrigin(origins = {
@@ -45,17 +45,24 @@ import com.quickshare.quickshare.service.DtoService;
 @RequestMapping("/api")
 public class ItemController {
 
-    @Autowired
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
-    @Autowired
-    private SystemStatusRepository systemStatusRepository;
+    private final SystemStatusRepository systemStatusRepository;
 
-    @Autowired
-    private DtoService dtoService;
+    private final DtoService dtoService;
 
-    @Autowired
-    private DriveService driveService;
+    private final DriveService driveService;
+
+    private final ItemService itemService;
+
+    ItemController(ItemRepository itemRepository, SystemStatusRepository systemStatusRepository, DtoService dtoService, DriveService driveService,
+        ItemService itemService) {
+        this.itemRepository = itemRepository;
+        this.systemStatusRepository = systemStatusRepository;
+        this.dtoService = dtoService;
+        this.driveService = driveService;
+        this.itemService=itemService;
+    }
 
     @GetMapping
     public String Test() {
@@ -124,25 +131,14 @@ public class ItemController {
     @DeleteMapping("/{uuid}")
     public ResponseEntity<String> deleteFile(@PathVariable("uuid") UUID id) {
 
-        Optional<Item> optionalItem = itemRepository.findById(id);
-
-        // Item not found
-        if (optionalItem.isEmpty()) {
+        try{
+            itemService.deleteItem(id);
             return ResponseEntity
-                    .status(HttpStatus.SC_NOT_FOUND)
-                    .body("Item not found");
-        }
-
-        Item item = optionalItem.get();
-
-        if ("FILE".equals(item.getType())) {
-            driveService.driveDelete(item.getDriveFileId());
-        }
-
-        itemRepository.delete(item);
-
-        return ResponseEntity
                 .ok("Deleted successfully");
+        }catch(RuntimeException e){
+            return ResponseEntity.status(HttpStatus.SC_NOT_FOUND)
+                             .body(e.getMessage());
+        }
     }
 
     @PatchMapping("/{uuid}")

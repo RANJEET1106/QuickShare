@@ -1,5 +1,7 @@
 package com.quickshare.quickshare.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,4 +22,7 @@ public class SystemStatus {
 
     @Column(nullable = false)
     private boolean maintenance;
+    private Boolean cleanupRunning;
+    private LocalDateTime lastCleanupTime;
+    private String lastCleanupStatus;
 }
