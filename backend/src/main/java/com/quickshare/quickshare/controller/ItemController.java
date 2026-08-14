@@ -37,9 +37,7 @@ import com.quickshare.quickshare.service.ItemService;
 
 @CrossOrigin(
     originPatterns = {
-        "https://*.trycloudflare.com",
-        "http://localhost:5173",
-		"http://localhost:2001"
+        "http://localhost:5173"
     }
 )
 @RequestMapping("/api")
