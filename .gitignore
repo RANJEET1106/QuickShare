@@ -23,3 +23,4 @@ frontend/dist/
 frontend/.env
 frontend/.env.development
 frontend/.env.production
+backend/src/main/resources/application-test.properties
