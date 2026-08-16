@@ -42,6 +42,26 @@ function FileList({ files, pin, onRefresh }) {
             <small className="text-muted">{file.mimeType}</small>
           </div>
 
+          <a
+            href={file.fileDownload}
+            download={file.fileName}
+            className="btn btn-sm btn-outline-primary me-2"
+            title="Download File"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M12 3v12"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <path d="M5 21h14"></path>
+            </svg>
+          </a>
+
           <button
             className="btn btn-sm btn-outline-danger"
             onClick={() => handleDelete(file.id)}

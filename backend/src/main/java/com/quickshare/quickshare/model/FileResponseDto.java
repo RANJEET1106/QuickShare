@@ -13,4 +13,5 @@ public class FileResponseDto {
     private UUID  id;
     private String fileName;
     private String fileLink;
+    private String fileDownload;
 }

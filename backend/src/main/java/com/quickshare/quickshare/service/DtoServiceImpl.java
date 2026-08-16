@@ -40,10 +40,12 @@ public class DtoServiceImpl implements DtoService {
         .filter(item-> "FILE".equals(item.getType()))
         .map(item->{
             String link="https://drive.google.com/file/d/"+item.getDriveFileId()+"/view";
+            String downloadLink="https://drive.google.com/uc?export=download&id="+item.getDriveFileId();
             FileResponseDto fileResponseDto= new FileResponseDto();
             fileResponseDto.setId(item.getId());
             fileResponseDto.setFileName(item.getFileName());
             fileResponseDto.setFileLink(link);
+            fileResponseDto.setFileDownload(downloadLink);
             return fileResponseDto;
         }).toList();
 
